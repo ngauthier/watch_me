@@ -1,0 +1,49 @@
+============
+= Watch Me =
+============
+Nick Gauthier (nick@smartlogicsolutions.com)
+
+===========
+= Purpose =
+===========
+The purpose of watch me is to allow developers to watch multiple log files at once in a single
+terminal. This is very useful when viewing logs over SSH because you don't have to open multiple
+sessions in order to watch multiple logs.
+
+=========
+= Usage =
+=========
+Using watch_me is very simple:
+
+Usage: watch_me.rb -l lines -r refresh file1 [file2 file3 ...]
+       lines: number of rows to use, a.k.a. height of console. Default 24.
+       refresh: refresh interval in seconds. Default 4
+
+The lines option is important if you want to make full use of your terminal space. Set this value
+to the number of rows that your terminal is sized to display. This defaults to 24, as many terminals
+open in 80x24 by default.
+
+The refresh option is the number of seconds between each log refresh.
+
+The number of lines to display per file is automatically calculated using the number of files and
+the number of lines for the entire application.
+
+watch_me uses tail in order to view the most recent log entries.
+
+============
+= Examples =
+============
+
+For a simple example, perform the following actions:
+
+1) Open 3 terminal windows in the watch_me directory
+2) In the first terminal, run:
+   $ ./examples/rander.rb > rander.1.log
+3) In the second terminal, run:
+   $ ./examples/rander.rb > rander.2.log
+4) In the third terminal, run:
+   $ ./watch_me.rb rander.1.log rander.2.log
+   
+The rander script outputs random numbers to stdout. This allows you to watch the output of both
+programs simultaneously.
+
